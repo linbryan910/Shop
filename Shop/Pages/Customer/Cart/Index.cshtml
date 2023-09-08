@@ -1,0 +1,68 @@
+﻿@page "{CustId:int}"
+@model Shop.Pages.Customer.Cart.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+
+    Layout = "LayoutCustomer";
+    ViewData["CustId"] = Model.CustId;
+}
+
+<h1>Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartInfo[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartInfo[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartInfo[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartInfo[0].Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CartInfo) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                <a asp-page="./DetailsCart" asp-route-id="@item.Id" asp-route-CustId="@Model.CustId" asp-route-ItemId="@item.ItemId">Details</a>
+            </td>
+            <td>
+                <a asp-page="./EditCart" asp-route-id="@item.Id" asp-route-CustId="@Model.CustId" asp-route-ItemId="@item.ItemId">Edit Amount</a>
+                
+            </td>
+            <td>
+                <form method="post">
+                        <input type="submit" value="Remove" asp-page-handler="Remove" asp-route-RemovedCartItemId="@item.Id" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h4>Total Price: </h4>
+<h5>@Model.TotalPrice</h5>
+
+<form method="post">
+    <input type="submit" value="Purchase" asp-page-handler="Purchase" asp-route-CustId="@Model.CustId"/>
+</form>

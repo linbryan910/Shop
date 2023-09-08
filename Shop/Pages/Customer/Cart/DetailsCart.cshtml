@@ -1,0 +1,51 @@
+﻿@page
+@model Shop.Pages.Customer.Cart.DetailsCartModel
+
+@{
+    ViewData["Title"] = "DetailsCart";
+
+    Layout = "LayoutCustomer";
+    ViewData["CustId"] = Model.CustId;
+}
+
+<h1>DetailsCart</h1>
+
+<div>
+    <h4>Item in Cart</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CartItem.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CartItem.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CartItem.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CartItem.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CartItem.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CartItem.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CartItem.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CartItem.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CartItem.Amount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CartItem.Amount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Index" asp-route-CustId="@Model.CustId">Back to Cart</a>
+</div>

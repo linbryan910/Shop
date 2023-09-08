@@ -1,0 +1,22 @@
+﻿@page
+@model Shop.Pages.Login.IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form method="post">
+    <select asp-for="AccountType">
+        <option value="Customer">Customer</option>
+        <option value="Employee">Employee</option>
+    </select>
+
+    Username: <input type="text" asp-for="UserName" />
+    Password: <input type="text" asp-for="Password" />
+
+    <input type="submit" value="Login"/>
+</form>
+
+<a asp-page="./CreateCustomer">Create New Customer Account</a> | 
+<a asp-page="./CreateEmployee">Create New Employee Account</a>

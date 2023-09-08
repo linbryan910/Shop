@@ -1,0 +1,46 @@
+﻿@page "{CustId:int}"
+@model Shop.Pages.Customer.Purchases.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+
+    Layout = "LayoutCustomer";
+    ViewData["CustId"] = Model.CustId;
+}
+
+<h1>Purchase History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchases[0].ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchases[0].Purchase.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purchases[0].Purchase.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var purchase in Model.Purchases) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => purchase.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => purchase.Purchase.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => purchase.Purchase.Date)
+            </td>
+            <td>
+                <a asp-page="./DetailsPurchase" asp-route-CustId="@purchase.Purchase.CustomerId" asp-route-ItemId="@purchase.Purchase.ItemId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

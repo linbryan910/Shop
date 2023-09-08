@@ -1,0 +1,58 @@
+﻿@page "{CustId:int},{ItemId:int}"
+@model Shop.Pages.Customer.Cart.EditCartModel
+
+@{
+    ViewData["Title"] = "EditCart";
+
+    Layout = "LayoutCustomer";
+    ViewData["CustId"] = Model.CustId;
+}
+
+<h1>EditCart</h1>
+
+<h4>Item</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Item.Id" />
+            <div class="form-group">
+                <label asp-for="Item.Name" class="control-label"></label>
+                <input asp-for="Item.Name" class="form-control" readonly />
+                <span asp-validation-for="Item.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Item.Description" class="control-label"></label>
+                <input asp-for="Item.Description" class="form-control" readonly />
+                <span asp-validation-for="Item.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Item.Category" class="control-label"></label>
+                <input asp-for="Item.Category" class="form-control" readonly />
+                <span asp-validation-for="Item.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Item.Price" class="control-label"></label>
+                <input asp-for="Item.Price" class="form-control" readonly />
+                <span asp-validation-for="Item.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Item.Amount" class="control-label"></label>
+                <input asp-for="Item.Amount" class="form-control" />
+                <span asp-validation-for="Item.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" asp-route-CustId="@Model.CustId">Back to Cart</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
