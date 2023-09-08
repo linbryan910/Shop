@@ -10,6 +10,17 @@
 
 <h1>Browse</h1>
 
+<form>
+    <p>
+        Search Name: <input type="text" asp-for="SearchString"/>
+        Search Category: 
+        <select asp-for="SearchCategory" asp-items="Model.Categories">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Search"/>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
