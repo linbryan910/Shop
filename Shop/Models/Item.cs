@@ -14,9 +14,9 @@ namespace Shop.Models
         public string? Description { get; set; }
         [Required]
         public string Category { get; set; } = string.Empty;
-        [Required, DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)")]
+        [Required, DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)"), Range(0, double.MaxValue)]
         public decimal Price { get; set; }
-        [Required]
+        [Required, Range(0, int.MaxValue, ErrorMessage =("Please enter a valid integer number"))]
         public int Amount { get; set; }
     }
 }
