@@ -23,6 +23,7 @@ namespace Shop.Pages.Customer.Purchases
         { 
             public Purchase Purchase { get; set; }
             public string ItemName { get; set; }
+            public string ImageSource { get; set; }
         }
 
         public IList<BasicPurchaseInfo> Purchases { get;set; } = default!;
@@ -42,7 +43,8 @@ namespace Shop.Pages.Customer.Purchases
                                 BasicPurchaseInfo ()
                                 {
                                     Purchase = purchase,
-                                    ItemName = item.Name
+                                    ItemName = item.Name,
+                                    ImageSource = item.ImageSource
                                 };
 
                 Purchases = await purchases.ToListAsync();

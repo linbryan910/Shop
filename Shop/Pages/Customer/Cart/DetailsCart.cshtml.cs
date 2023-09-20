@@ -24,6 +24,7 @@ namespace Shop.Pages.Customer.Cart
             public int Id { get; set; }
             public int ItemId { get; set; }
             public string Name { get; set; }
+            public string ImageSource { get; set; }
             public string Description { get; set; }
             public string Category { get; set; }
             public decimal Price { get; set; }
@@ -54,6 +55,7 @@ namespace Shop.Pages.Customer.Cart
                            Id = c.Id,
                            ItemId = i.Id, 
                            Name = i.Name,
+                           ImageSource = i.ImageSource,
                            Description = i.Description,
                            Category = i.Category,
                            Price = i.Price,

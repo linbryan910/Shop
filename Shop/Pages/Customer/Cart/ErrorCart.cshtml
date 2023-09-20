@@ -20,6 +20,9 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Info.Item.Name)
         </dd>
+        <div>
+            <img src="~/images/@Model.Info.Item.ImageSource"></img>
+        </div>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Info.Item.Description)
         </dt>

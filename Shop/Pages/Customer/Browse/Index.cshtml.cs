@@ -45,14 +45,15 @@ namespace Shop.Pages.Customer.Browse
 
             // Gets items (filters by category/name if inputted)
             var item = from i in _context.Inventory
+                       orderby i.Category 
                        select i;
 
             if (!SearchCategory.IsNullOrEmpty()) {
-                item = item.Where(i => i.Category == SearchCategory);
+                item = (IOrderedQueryable<Item>) item.Where(i => i.Category == SearchCategory);
             }
 
             if (!SearchString.IsNullOrEmpty()) {
-                item = item.Where(i => i.Name.Contains(SearchString));
+                item = (IOrderedQueryable<Item>) item.Where(i => i.Name.Contains(SearchString));
             }
 
             Item = await item.ToListAsync();

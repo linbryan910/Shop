@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.CartInfo[0].Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CartInfo[0].ImageSource)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CartInfo[0].Category)
             </th>
             <th>
@@ -33,6 +36,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="~/images/@item.ImageSource" width="100" height="100"></img>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)

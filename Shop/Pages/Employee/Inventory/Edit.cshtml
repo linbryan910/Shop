@@ -21,6 +21,9 @@
                 <input asp-for="Item.Name" class="form-control" />
                 <span asp-validation-for="Item.Name" class="text-danger"></span>
             </div>
+            <div>
+                <img src="~/images/@Model.Item.ImageSource" width="100" height="100"/>
+            </div>
             <div class="form-group">
                 <label asp-for="Item.Description" class="control-label"></label>
                 <input asp-for="Item.Description" class="form-control" />

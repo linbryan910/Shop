@@ -37,16 +37,17 @@ namespace Shop.Pages.Employee.Inventory
                                                select item.Category;
 
             var selectedItems = from item in _context.Inventory
-                        select item;
+                                orderby item.Category 
+                                select item;
 
             if (!string.IsNullOrEmpty(SearchString))
             {
-                selectedItems = selectedItems.Where(s => s.Name.Contains(SearchString));
+                selectedItems = (IOrderedQueryable<Item>) selectedItems.Where(s => s.Name.Contains(SearchString));
             }
 
             if (!string.IsNullOrEmpty(SearchCategory))
             {
-                selectedItems = selectedItems.Where(s => s.Category == SearchCategory);
+                selectedItems = (IOrderedQueryable<Item>) selectedItems.Where(s => s.Category == SearchCategory);
             }
 
             Categories = new SelectList(await categoryQuery.Distinct().ToListAsync());

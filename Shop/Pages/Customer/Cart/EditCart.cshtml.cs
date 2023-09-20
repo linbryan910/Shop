@@ -24,14 +24,16 @@ namespace Shop.Pages.Customer.Cart
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string ImageSource { get; set; }
             public string? Description { get; set; }
             public string Category { get; set; }
             public decimal Price { get; set; }
             public int Amount { get; set; }
         }
 
-        [BindProperty]
         public CartItemInfo Item { get; set; } = default!;
+
+        public int NewAmount { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int CustId { get; set; }
@@ -54,6 +56,7 @@ namespace Shop.Pages.Customer.Cart
                        {
                            Id = i.Id,
                            Name = i.Name,
+                           ImageSource = i.ImageSource,
                            Description = i.Description,
                            Category = i.Category,
                            Price = i.Price,
@@ -74,8 +77,26 @@ namespace Shop.Pages.Customer.Cart
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
+                var item1 = from i in _context.Inventory
+                           join c in _context.Cart on i.Id equals c.ItemId
+                           where c.CustomerId == CustId && c.ItemId == ItemId
+                           select new
+                           CartItemInfo()
+                           {
+                               Id = i.Id,
+                               Name = i.Name,
+                               ImageSource = i.ImageSource,
+                               Description = i.Description,
+                               Category = i.Category,
+                               Price = i.Price,
+                               Amount = c.Amount
+                           };
+
+                Item = await item1.FirstOrDefaultAsync();
+
                 return Page();
             }
 
@@ -85,7 +106,7 @@ namespace Shop.Pages.Customer.Cart
 
             var item = cartItem.FirstOrDefault();
 
-            item.Amount = Item.Amount;
+            item.Amount = NewAmount;
 
             _context.Attach(item).State = EntityState.Modified;
 

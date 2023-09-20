@@ -22,6 +22,10 @@
                 <input asp-for="Item.Name" class="form-control" readonly />
                 <span asp-validation-for="Item.Name" class="text-danger"></span>
             </div>
+            <div>
+                <input type="hidden" asp-for"Item.ImageSource" />
+                <img src="~/images/@Model.Item.ImageSource" width="150" height="150"/>
+            </div>
             <div class="form-group">
                 <label asp-for="Item.Description" class="control-label"></label>
                 <input asp-for="Item.Description" class="form-control" readonly />
@@ -39,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Item.Amount" class="control-label"></label>
-                <input asp-for="Item.Amount" class="form-control" />
+                <input asp-for="NewAmount" class="form-control" />
                 <span asp-validation-for="Item.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
